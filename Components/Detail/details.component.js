@@ -41,6 +41,8 @@ export const DetailsScreen = ({ navigation }) => {
           <FitImage source={require('./images/blueabstract.jpg')} style={styles.fitImage} />
         </View>
 
+
+
         <View style={styles.overlay}>
           <Text style={styles.headline}>United States Federal District for the Northern District of Illinois</Text>
 
@@ -84,6 +86,9 @@ export const DetailsScreen = ({ navigation }) => {
 
 
         </View>
+
+
+        <ScrollView style={{ flex: 1 }}>
 
         <View style={styles.overlay}>
           <View
@@ -264,7 +269,7 @@ export const DetailsScreen = ({ navigation }) => {
 
 
 
-
+</ScrollView>
 
       </View>
 
