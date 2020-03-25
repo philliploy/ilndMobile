@@ -72,7 +72,7 @@ export const DetailsScreen = ({ navigation }) => {
                   height={Dimensions.get("window").width < Dimensions.get("window").height ? hp("44") : hp("90")} source={require('./images/BW_ILNDSEAL.png')} />
 
               ) :
-                ("jhj")
+               <Text>test</Text>
 
             }
           </View>
