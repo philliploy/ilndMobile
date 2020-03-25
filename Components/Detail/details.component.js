@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, SafeAreaView, StyleSheet, Image, View, Dimensions, TouchableOpacity } from 'react-native';
+import { Alert, SafeAreaView, StyleSheet, Image, View, Dimensions, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import FitImage from 'react-native-fit-image';
@@ -7,7 +7,7 @@ import ResponsiveImage from "react-native-responsive-image";
 
 import { isAndroid } from 'react-native-device-detection';
 import { ScrollView } from 'react-native-gesture-handler';
-import { red } from 'color-name';
+
 
 
 const ForwardIcon = (style) => (
@@ -36,12 +36,13 @@ export const DetailsScreen = ({ navigation }) => {
       <Divider />
 
       <View style={styles.container}>
+
         <View style={styles.backgroundContainer}>
           <FitImage source={require('./images/blueabstract.jpg')} style={styles.fitImage} />
         </View>
 
         <View style={styles.overlay}>
-          <Text style={styles.headline}>U.S Federal District for the Northern District of Illinois</Text>
+          <Text style={styles.headline}>United States Federal District for the Northern District of Illinois</Text>
 
         </View>
 
@@ -53,16 +54,16 @@ export const DetailsScreen = ({ navigation }) => {
               borderRadius: 4,
               borderWidth: 0.5,
               borderColor: '#d6d7da',
-     
+
               alignItems: "center",
-             
+
               position: "absolute",
               shadowOpacity: 0.75,
               shadowRadius: 5,
               shadowColor: 'black',
               shadowOffset: { height: 0, width: 0 },
-             
-              width:"100%"  
+
+              width: "100%"
             }}
           >
             {
@@ -72,7 +73,10 @@ export const DetailsScreen = ({ navigation }) => {
                   height={Dimensions.get("window").width < Dimensions.get("window").height ? hp("44") : hp("90")} source={require('./images/BW_ILNDSEAL.png')} />
 
               ) :
-               <Text>test</Text>
+                <Image style={styles.logo} width={Dimensions.get("window").width < Dimensions.get("window").height ? wp("100%") : wp("84%")}
+                  marginTop={Dimensions.get("window").width < Dimensions.get("window").height ? hp('20') : hp('1')}
+                  height={Dimensions.get("window").width < Dimensions.get("window").height ? hp("60") : hp("90")} source={require('./images/BW_ILNDSEAL.png')} />
+
 
             }
           </View>
@@ -92,22 +96,31 @@ export const DetailsScreen = ({ navigation }) => {
               shadowRadius: 5,
               shadowColor: 'black',
               shadowOffset: { height: 0, width: 0 },
-              marginTop: "25.21%",
+              marginTop: "36.21%",
 
             }}
           >
-            <Text style={{ margin: "7.6%" }}>Daily Calendar</Text>
 
-            <Text style={{ margin: "5.7%" }}>Home Page</Text>
 
-            <Text style={{ margin: "7.7%" }}>Latest News</Text>
+            <Text style={{ margin: "6.6%" }}>Daily Calendar</Text>
+            {
+              isAndroid === false ?
+                <Text style={{ margin: "8.2%" }}>Home Page</Text>
+                :
+                <Text style={{ margin: "1.2%" }}>Home Page</Text>
+            }
+            <Text style={{ margin: "6.6%" }}>News</Text>
+
+
+
+
 
           </View>
         </View>
 
 
         <View style={styles.overlay}>
-          <View
+          <View marginTop={"76.1%"}
             style={{
               justifyContent: "center",
               alignItems: "center",
@@ -117,15 +130,15 @@ export const DetailsScreen = ({ navigation }) => {
               shadowRadius: 5,
               shadowColor: 'black',
               shadowOffset: { height: 0, width: 0 },
-              marginTop: "50.21%",
-
+              width:"100%" 
+               
             }}
           >
-            <Text style={{ margin: "7.6%" }}>Directions</Text>
+            <Text style={{ margin: "9.6%" }}>Directions</Text>
 
-            <Text style={{ margin: "7.6%" }}>Ask Questions</Text>
+            <Text style={{ margin: "9.6%" }}>Ask Questions</Text>
 
-            <Text style={{ margin: "7.6%" }}> </Text>
+            <Text style={{ margin: "9.6%" }}> </Text>
 
           </View>
         </View>
@@ -140,18 +153,18 @@ export const DetailsScreen = ({ navigation }) => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "row",
-              position: "absolute",
+
               shadowOpacity: 0.75,
               shadowRadius: 5,
               shadowColor: 'black',
               shadowOffset: { height: 0, width: 0 },
-               marginTop:"18%",
-                
-               height: 50,
-               width:"100%"
+              marginTop: "21%",
+
+
+              width: "100%"
             }}
           >
-            <TouchableOpacity  style={{margin:"10%"}} onPress={() => alert('image clicked')} >
+            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
 
               <View    >
                 <ResponsiveImage
@@ -165,7 +178,7 @@ export const DetailsScreen = ({ navigation }) => {
 
             </TouchableOpacity>
 
-            <TouchableOpacity    style={{margin:"10%"}} onPress={() => alert('image clicked')} >
+            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
               <View   >
                 <ResponsiveImage
                   source={require("./images/iso_icons8-home-96.png")}
@@ -176,7 +189,7 @@ export const DetailsScreen = ({ navigation }) => {
               </View>
 
             </TouchableOpacity>
-            <TouchableOpacity    style={{margin:"10%"}} onPress={() => alert('image clicked')} >
+            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
               <View   >
                 <ResponsiveImage
                   source={require("./images/iso_icons8-us-news-96.png")}
@@ -191,12 +204,12 @@ export const DetailsScreen = ({ navigation }) => {
 
           </View>
 
-     
+
         </View>
 
 
         <View style={styles.overlay}>
-        <View
+          <View
             style={{
               borderRadius: 4,
               borderWidth: 0.5,
@@ -204,17 +217,17 @@ export const DetailsScreen = ({ navigation }) => {
               justifyContent: "center",
               alignItems: "center",
               flexDirection: "row",
-              position: "absolute",
+
               shadowOpacity: 0.75,
               shadowRadius: 5,
               shadowColor: 'black',
               shadowOffset: { height: 0, width: 0 },
-               marginTop:"40%",
-               height: 50,
-               width:"100%"
+              marginTop: "3%",
+
+              width: "100%"
             }}
           >
-            <TouchableOpacity style={{margin:"10%"}}   onPress={() => alert('image clicked')} >
+            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
 
               <View    >
                 <ResponsiveImage
@@ -228,7 +241,7 @@ export const DetailsScreen = ({ navigation }) => {
 
             </TouchableOpacity>
 
-            <TouchableOpacity style={{margin:"10%"}}   onPress={() => alert('image clicked')} >
+            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
               <View   >
                 <ResponsiveImage
                   source={require("./images/iso_icons8-ask-question-96.png")}
@@ -239,20 +252,20 @@ export const DetailsScreen = ({ navigation }) => {
               </View>
 
             </TouchableOpacity>
-             
-              <View   style={{margin:"17%"}} >
 
-              </View>
-    
+            <View style={{ margin: "17%" }} >
+
+            </View>
+
 
           </View>
 
         </View>
-     
-     
-     
-     
-     
+
+
+
+
+
       </View>
 
 
@@ -277,7 +290,8 @@ var styles = StyleSheet.create({
   },
   overlay: {
 
-    backgroundColor: '#000000',
+
+
     width: "100%"
   },
   logo: {
