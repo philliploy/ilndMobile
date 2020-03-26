@@ -8,7 +8,7 @@ import ResponsiveImage from "react-native-responsive-image";
 import { isAndroid } from 'react-native-device-detection';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
+import { CalendarSearch } from '../Calendar/calendar.search.component'
 
 const ForwardIcon = (style) => (
   <Icon {...style} name='arrow-forward' />
@@ -18,10 +18,8 @@ export const DetailsScreen = ({ navigation }) => {
 
   const navigateForward = () => {
 
-    Alert.alert("myTitle", "my message");
+    navigation.navigate('CalendarSearch');
 
-    //   navigation.navigate('Calendar');
-    //  navigation.goBack();
   };
 
   const BackAction = () => (
@@ -32,7 +30,7 @@ export const DetailsScreen = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
 
 
-      {/* <TopNavigation title='MyApp' alignment='center' leftControl={BackAction()} /> */}
+
       <Divider />
 
       <View style={styles.container}>
@@ -55,7 +53,7 @@ export const DetailsScreen = ({ navigation }) => {
             style={{
               borderRadius: 4,
               borderWidth: 0.5,
-              borderColor: '#d6d7da',
+
 
               alignItems: "center",
 
@@ -90,186 +88,184 @@ export const DetailsScreen = ({ navigation }) => {
 
         <ScrollView style={{ flex: 1 }}>
 
-        <View style={styles.overlay}>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              position: "absolute",
-              shadowOpacity: 0.75,
-              shadowRadius: 5,
-              shadowColor: 'black',
-              shadowOffset: { height: 0, width: 0 },
-              marginTop: "36.21%",
+          <View style={styles.overlay}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                position: "absolute",
+                shadowOpacity: 0.75,
+                shadowRadius: 5,
+                shadowColor: 'black',
+                shadowOffset: { height: 0, width: 0 },
+                marginTop: "36.21%",
 
-            }}
-          >
-
-
-            <Text style={{ margin: "6.6%" }}>Daily Calendar</Text>
-            {
-              isAndroid === false ?
-                <Text style={{ margin: "8.2%" }}>Home Page</Text>
-                :
-                <Text style={{ margin: "1.2%" }}>Home Page</Text>
-            }
-            <Text style={{ margin: "6.6%" }}>News</Text>
+              }}
+            >
 
 
+              <Text style={{ margin: "6.6%" }}>Daily Calendar</Text>
+              {
+                isAndroid === false ?
+                  <Text style={{ margin: "8.2%" }}>Home Page</Text>
+                  :
+                  <Text style={{ margin: "1.2%" }}>Home Page</Text>
+              }
+              <Text style={{ margin: "7.6%" }}>News</Text>
 
 
 
+
+
+            </View>
           </View>
-        </View>
 
 
-        <View style={styles.overlay}>
-          <View marginTop={"76.1%"}
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-              position: "absolute",
-              shadowOpacity: 0.75,
-              shadowRadius: 5,
-              shadowColor: 'black',
-              shadowOffset: { height: 0, width: 0 },
-              width:"100%" 
+          <View style={styles.overlay}>
+            <View marginTop={"76.1%"}
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+                position: "absolute",
+                shadowOpacity: 0.75,
+                shadowRadius: 5,
+                shadowColor: 'black',
+                shadowOffset: { height: 0, width: 0 },
+                width: "100%"
+
+              }}
+            >
+              <Text style={{ margin: "9.6%" }}>Directions</Text>
+
+              <Text style={{ margin: "9.6%" }}>Ask Questions</Text>
+
+              <Text style={{ margin: "11.6%" }}> </Text>
+
+            </View>
+          </View>
+
+
+          <View style={styles.overlay}>
+            <View
+              style={{
                
-            }}
-          >
-            <Text style={{ margin: "9.6%" }}>Directions</Text>
 
-            <Text style={{ margin: "9.6%" }}>Ask Questions</Text>
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
 
-            <Text style={{ margin: "9.6%" }}> </Text>
-
-          </View>
-        </View>
-
-
-        <View style={styles.overlay}>
-          <View
-            style={{
-              borderRadius: 4,
-              borderWidth: 0.5,
-              borderColor: 'red',
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-
-              shadowOpacity: 0.75,
-              shadowRadius: 5,
-              shadowColor: 'black',
-              shadowOffset: { height: 0, width: 0 },
-              marginTop: "21%",
+                shadowOpacity: 0.75,
+                shadowRadius: 5,
+                shadowColor: 'black',
+                shadowOffset: { height: 0, width: 0 },
+                marginTop: "21%",
 
 
-              width: "100%"
-            }}
-          >
-            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+                width: "100%"
+              }}
+            >
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => navigateForward()} >
 
-              <View    >
-                <ResponsiveImage
-                  source={require("./images/iso_icons8-calendar-96.png")}
-                  initWidth="60"
-                  initHeight="60"
-
-
-                />
-              </View>
-
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
-              <View   >
-                <ResponsiveImage
-                  source={require("./images/iso_icons8-home-96.png")}
-                  initWidth="60"
-                  initHeight="60"
-
-                />
-              </View>
-
-            </TouchableOpacity>
-            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
-              <View   >
-                <ResponsiveImage
-                  source={require("./images/iso_icons8-us-news-96.png")}
-                  initWidth="60"
-                  initHeight="60"
-
-                />
-              </View>
-            </TouchableOpacity>
+                <View    >
+                  <ResponsiveImage
+                    source={require("./images/iso_icons8-calendar-96.png")}
+                    initWidth="60"
+                    initHeight="60"
 
 
+                  />
+                </View>
 
-          </View>
+              </TouchableOpacity>
 
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+                <View   >
+                  <ResponsiveImage
+                    source={require("./images/iso_icons8-home-96.png")}
+                    initWidth="60"
+                    initHeight="60"
 
-        </View>
+                  />
+                </View>
 
+              </TouchableOpacity>
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+                <View   >
+                  <ResponsiveImage
+                    source={require("./images/iso_icons8-us-news-96.png")}
+                    initWidth="60"
+                    initHeight="60"
 
-        <View style={styles.overlay}>
-          <View
-            style={{
-              borderRadius: 4,
-              borderWidth: 0.5,
-              borderColor: 'green',
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "row",
-
-              shadowOpacity: 0.75,
-              shadowRadius: 5,
-              shadowColor: 'black',
-              shadowOffset: { height: 0, width: 0 },
-              marginTop: "3%",
-
-              width: "100%"
-            }}
-          >
-            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
-
-              <View    >
-                <ResponsiveImage
-                  source={require("./images/ios-icons8-google-maps-96.png")}
-                  initWidth="60"
-                  initHeight="60"
+                  />
+                </View>
+              </TouchableOpacity>
 
 
-                />
-              </View>
-
-            </TouchableOpacity>
-
-            <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
-              <View   >
-                <ResponsiveImage
-                  source={require("./images/iso_icons8-ask-question-96.png")}
-                  initWidth="60"
-                  initHeight="60"
-
-                />
-              </View>
-
-            </TouchableOpacity>
-
-            <View style={{ margin: "17%" }} >
 
             </View>
 
 
           </View>
 
-        </View>
+
+          <View style={styles.overlay}>
+            <View
+              style={{
+               
+
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "row",
+
+                shadowOpacity: 0.75,
+                shadowRadius: 5,
+                shadowColor: 'black',
+                shadowOffset: { height: 0, width: 0 },
+                marginTop: "3%",
+
+                width: "100%"
+              }}
+            >
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+
+                <View    >
+                  <ResponsiveImage
+                    source={require("./images/ios-icons8-google-maps-96.png")}
+                    initWidth="60"
+                    initHeight="60"
+
+
+                  />
+                </View>
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+                <View   >
+                  <ResponsiveImage
+                    source={require("./images/iso_icons8-ask-question-96.png")}
+                    initWidth="60"
+                    initHeight="60"
+
+                  />
+                </View>
+
+              </TouchableOpacity>
+
+              <View style={{ margin: "17%" }} >
+
+              </View>
+
+
+            </View>
+
+          </View>
 
 
 
-</ScrollView>
+        </ScrollView>
 
       </View>
 
@@ -311,7 +307,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column'
   },
   headline: {
-    fontSize: 17,
+    fontSize: 20,
     textAlign: 'center',
     alignSelf: 'center',
 

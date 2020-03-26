@@ -8,7 +8,7 @@ const App = () => (
   <React.Fragment>
     <IconRegistry icons={EvaIconsPack}/>
     <ApplicationProvider mapping={mapping} theme={theme}>
-      <AppNavigator/>
+      <AppNavigator />
     </ApplicationProvider>
   </React.Fragment>
 );

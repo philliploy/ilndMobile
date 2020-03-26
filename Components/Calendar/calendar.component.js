@@ -11,9 +11,13 @@ const dataArray = [
 ];
 export const CalendarScreen = ({ navigation }) => {
 
-  // const navigateDetails = () => {
-  //   navigation.navigate('Details');
-  // };
+   const navigateDetails = () => {
+       navigation.goBack();
+   };
+
+   const BackAction = () => (
+    <TopNavigationAction icon={ForwardIcon} onPress={navigateForward} />
+  );
   const styles = StyleSheet.create({
     container: {
       flex: 1,
