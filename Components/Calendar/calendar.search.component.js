@@ -14,16 +14,18 @@ const ForwardIcon = (style) => (
 export const CalendarSearchScreen = ({ navigation }) => {
 
 
-  const [selectedOption, setSelectedOption] = useState({
-    date:[],
-    judge:[] 
-  });
+  const [selectedDateOption, setSelectedDateOption] = useState([]);
+
+   
+  const [selectedJudgeOption, setSelectedJudgeOption] = useState([]);
+
+
   useEffect(() => {
-    console.log('state changed', selectedOption)
+   // console.log('state changed', selectedDateOption)
     let dataArray = []
     let dataJudge = []
     API.getCalendar().then(_response => {
-      console.debug(_response.data)
+    //  console.debug(_response.data)
       let prevDate = ""
       let prevFirstname = ""
       let prevLastname=""
@@ -44,15 +46,14 @@ export const CalendarSearchScreen = ({ navigation }) => {
         prevLastname=_response.data[i].Lastname
       }
 
-      console.debug(dataArray)
-      console.debug( dataJudge)
-      setSelectedOption({
-        date: dataArray,
-        judge: dataJudge
-      })
+     // console.debug(dataArray)
+     // console.debug( dataJudge)
+      setSelectedDateOption(dataArray)
+
+      setSelectedJudgeOption(dataJudge)
     })
     // write your callback function here
-  }, [selectedOption]);
+  },[] );
 
 
   const navigateForward = () => {
@@ -76,19 +77,19 @@ export const CalendarSearchScreen = ({ navigation }) => {
         <TopNavigation title='Daily Calendar' alignment='center' leftControl={BackAction()} />
 
         <Layout  >
-          <Select data={selectedOption.date}
-            selectedOption={selectedOption.date}
-            onSelect={setSelectedOption}
-            placeholder="Select Date" />
+          <Select data={selectedDateOption}
+       
+           onSelect={()=>setSelectedDateOption}
+            placeholder="Select Date.." />
         </Layout>
 
-
-        <Layout  >
-          <Select data={selectedOption.judge}
-            selectedOption={selectedOption.judge}
-            onSelect={setSelectedOption}
-            placeholder="Select judge" />
-        </Layout>
+ 
+         <Layout  >
+           <Select data={selectedJudgeOption}
+            selectedOption={selectedJudgeOption}
+             onSelect={()=>setSelectedJudgeOption}
+             placeholder="Select judge" />
+         </Layout>   
 
       </ScrollView>
     </SafeAreaView>
