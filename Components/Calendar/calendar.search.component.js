@@ -86,7 +86,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
   );
   const navigateForward = (option) => {
     console.debug(option)
-    setSelectedDateOption(option)
+    setSelectedJudgeOption(option)
     navigation.navigate('CalendarDetail');
 
   };
