@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { CalendarScreen } from '../Calendar/calendar.component'
 import { CalendarSearchScreen } from '../Calendar/calendar.search.component'
 import { DetailsScreen } from '../Detail/details.component';
+import {CalendarDetailScreen}  from '../Calendar/calendar.detail.component'
 
 const Stack = createStackNavigator();
 
@@ -11,6 +12,7 @@ const DetailsNavigator = () => (
   <Stack.Navigator headerMode='none'>
     <Stack.Screen name='Details' component={DetailsScreen}/>
      <Stack.Screen name='Calendar' component={CalendarScreen}/>
+     <Stack.Screen name='CalendarDetail' component={CalendarDetailScreen}/>
      <Stack.Screen name='CalendarSearch' component={CalendarSearchScreen}/>
   </Stack.Navigator>
 );

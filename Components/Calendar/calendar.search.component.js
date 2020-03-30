@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { Select, Avatar, Button, Icon, Divider, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { SafeAreaView, StyleSheet ,View} from 'react-native';
+import {   Spinner,Select, Avatar, Button, Icon, Divider, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { Container, Header, Content, Accordion, List, ListItem, Label } from "native-base";
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
+ 
 
 const ForwardIcon = (style) => (
   <Icon {...style} name='arrow-back' />
 );
+
+const styles = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 
 export const CalendarSearchScreen = ({ navigation }) => {
@@ -16,49 +25,69 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   const [selectedDateOption, setSelectedDateOption] = useState([]);
 
-   
+
   const [selectedJudgeOption, setSelectedJudgeOption] = useState([]);
 
+  const refresh = (option) => {
 
-  useEffect(() => {
-   // console.log('state changed', selectedDateOption)
+     
+    
+    // console.log('state changed', selectedDateOption)
     let dataArray = []
     let dataJudge = []
     API.getCalendar().then(_response => {
-    //  console.debug(_response.data)
+      //  console.debug(_response.data)
       let prevDate = ""
       let prevFirstname = ""
-      let prevLastname=""
+      let prevLastname = ""
       for (let i = 0; i < _response.data.length; i++) {
         if (moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY") != prevDate)
           dataArray.push({
             text: moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
           })
-           prevDate = moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
-    
-         if(_response.data[i].Firstname != prevFirstname && _response.data[i].Lastname != prevLastname){
-           dataJudge.push({
-            text:'Judge '+_response.data[i].Firstname +' '+_response.data[i].Lastname
-            
-           })
-         }
+        prevDate = moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
+
+        if (_response.data[i].Firstname != prevFirstname && _response.data[i].Lastname != prevLastname) {
+          dataJudge.push({
+            text: 'Judge ' + _response.data[i].Firstname + ' ' + _response.data[i].Lastname
+
+          })
+        }
         prevFirstname = _response.data[i].Firstname
-        prevLastname=_response.data[i].Lastname
+        prevLastname = _response.data[i].Lastname
       }
 
-     // console.debug(dataArray)
-     // console.debug( dataJudge)
-      setSelectedDateOption(dataArray)
 
-      setSelectedJudgeOption(dataJudge)
+      if (option === "date") {
+        setSelectedDateOption(dataArray)
+      }
+      else if (option === "judge") {
+        setSelectedJudgeOption(dataJudge)
+      }
+      else {
+        setSelectedDateOption(dataArray)
+        setSelectedJudgeOption(dataJudge)
+      }
+
+
     })
-    // write your callback function here
-  },[] );
+  }
+  useEffect(() => {
+  refresh("")
+  
 
+  }, []);
 
-  const navigateForward = () => {
-
-    navigation.navigate('Calendar');
+  
+  const renderLoading = () => (
+    <View style={styles.loading}>
+      <Spinner/>
+    </View>
+  );
+  const navigateForward = (option) => {
+    console.debug(option)
+    setSelectedDateOption(option)
+    navigation.navigate('CalendarDetail');
 
   };
 
@@ -70,6 +99,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
     <TopNavigationAction icon={ForwardIcon} onPress={navigateBack} />
   );
 
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
@@ -78,18 +108,27 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
         <Layout  >
           <Select data={selectedDateOption}
-       
-           onSelect={()=>setSelectedDateOption}
-            placeholder="Select Date.." />
+            selectedOption={selectedDateOption}
+            onSelect={(option1) => setSelectedDateOption(option1)}
+            placeholder="Select Date.."
+            onFocus={() => { refresh("date") }}
+            
+          />
+           
+             
         </Layout>
 
- 
-         <Layout  >
-           <Select data={selectedJudgeOption}
+
+        <Layout  >
+          <Select data={selectedJudgeOption}
             selectedOption={selectedJudgeOption}
-             onSelect={()=>setSelectedJudgeOption}
-             placeholder="Select judge" />
-         </Layout>   
+            onSelect={(option2) => navigateForward(option2)}
+            placeholder="Select judge"
+            onFocus={() => { refresh("judge") }}
+
+          />
+
+        </Layout>
 
       </ScrollView>
     </SafeAreaView>
