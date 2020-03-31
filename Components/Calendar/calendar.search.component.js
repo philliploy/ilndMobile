@@ -6,9 +6,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
 
-import Test from './test'
-
  
+
 
 const BackwardIcon = (style) => (
   <Icon {...style} name='arrow-back' />
@@ -45,7 +44,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
     let dataArray = []
     let dataJudge = []
     API.getCalendar().then(_response => {
-      //  console.debug(_response.data)
+      //
       let prevDate = ""
       let prevFirstname = ""
       let prevLastname = ""
@@ -55,6 +54,11 @@ export const CalendarSearchScreen = ({ navigation }) => {
             text: moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
           })
         prevDate = moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
+
+      }
+
+      _response.data.sort((a, b) => { return a.Lastname.localeCompare(b.Lastname) })
+      for (let i = 0; i < _response.data.length; i++) {
 
         if (_response.data[i].Firstname != prevFirstname && _response.data[i].Lastname != prevLastname) {
           dataJudge.push({
@@ -67,19 +71,23 @@ export const CalendarSearchScreen = ({ navigation }) => {
       }
 
 
+
       if (option === "date") {
+        //dataArray.sort((a,b)=>{ return  a.Date.localeCompare(b.Date)  })
         setSelectedOption({
           judge: selectedOption.judge,
           date: dataArray
         })
       }
       else if (option === "judge") {
+
         setSelectedOption({
           date: selectedOption.date,
           judge: dataJudge
         })
       }
       else {
+
         setSelectedOption({ date: dataArray, judge: dataJudge })
 
       }
@@ -105,8 +113,8 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
 
 
-    console.debug("forward...", option, selectedOption.date)
-    navigation.navigate('CalendarDetail',{date: selectedOption.date.text, judge:option.text})
+    //console.debug("forward...", option, selectedOption.date)
+    navigation.navigate('CalendarDetail', { date: selectedOption.date.text, judge: option.text })
 
 
 
@@ -123,37 +131,37 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   return (
 
-  
-
-      <SafeAreaView style={{ flex: 1 }}>
-
-        <ScrollView style={{ flex: 1 }}>
-          <TopNavigation title='Daily Calendar' alignment='center' leftControl={BackAction()} />
-
-          {console.debug("setSelectedOption----:", selectedOption.date, selectedOption.judge)}
-      
-
-          <Select data={selectedOption.date}
-            selectedOption={selectedOption.date}
-            onSelect={(option1) => setSelectedOption({ judge: selectedOption.judge, date: option1 })}
-            placeholder="Select Date.."
-            onFocus={() => { refresh("date") }}
-
-          />
-
-          <Select data={selectedOption.judge}
-            selectedOption={selectedOption.judge}
-            onSelect={(option2) => navigateForward(option2)}
-            placeholder="Select judge"
-            onFocus={() => { refresh("judge") }}
-
-          />
 
 
+    <SafeAreaView style={{ flex: 1 }}>
 
-        </ScrollView>
-      </SafeAreaView>
- 
+      <ScrollView style={{ flex: 1 }}>
+        <TopNavigation title='Daily Calendar' alignment='center' leftControl={BackAction()} />
+
+        {/* {console.debug("setSelectedOption----:", selectedOption.date, selectedOption.judge)} */}
+
+
+        <Select data={selectedOption.date}
+          selectedOption={selectedOption.date}
+          onSelect={(option1) => setSelectedOption({ judge: selectedOption.judge, date: option1 })}
+          placeholder="Select Date.."
+          onFocus={() => { refresh("date") }}
+
+        />
+
+        <Select data={selectedOption.judge}
+          selectedOption={selectedOption.judge}
+          onSelect={(option2) => navigateForward(option2)}
+          placeholder="Select judge"
+          onFocus={() => { refresh("judge") }}
+
+        />
+
+
+
+      </ScrollView>
+    </SafeAreaView>
+
 
   )
 }
