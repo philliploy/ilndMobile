@@ -6,15 +6,15 @@ import { Container, Header, Content, Accordion, List, ListItem, Label } from "na
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
-import  Context from "../Calendar/calendarContext";
+ 
 
   
 
-export const CalendarDetailScreen = ({ navigation }) => {
+export const CalendarDetailScreen = ({ route,navigation }) => {
 
-    const calendar = useContext(Context);
+ 
 
-    console.debug("detailed:",calendar.judge,calendar.date)
+
     const BackwardIcon = (style) => (
         <Icon {...style} name='arrow-back' />
     );
@@ -27,7 +27,7 @@ export const CalendarDetailScreen = ({ navigation }) => {
     );
 
     useEffect(()=>{
-    //    console.debug(calendar.selectedJudgeOption.text)
+        console.debug("route detailed...:",route.params.date, route.params.judge)
     },[])
 
     return (<SafeAreaView style={{ flex: 1 }}>

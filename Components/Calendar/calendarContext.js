@@ -1,8 +1,16 @@
-import React from "react"
+import React,{createContext} from "react"
 
-const calendarContext = React.createContext({
+const CalendarContext =  createContext({
     date:[],
-    judge:[]
-})
+    judge:[]})
 
-export default calendarContext
+// const CalendarLayout = props => {
+  
+//     return (
+//       <CalendarContext.Provider value={props.data}>
+//         {console.debug("calendar context:", props.data ,CalendarContext)}
+//       {props.children}</CalendarContext.Provider>
+//     );
+//   };
+
+export default CalendarContext

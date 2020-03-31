@@ -1,11 +1,14 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import { Spinner, Select, Avatar, Button, Icon, Divider, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { Container, Header, Content, Accordion, List, ListItem, Label } from "native-base";
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
-import CalendarContext from '../Calendar/calendarContext'
+
+import Test from './test'
+
+ 
 
 const BackwardIcon = (style) => (
   <Icon {...style} name='arrow-back' />
@@ -20,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 
- 
+
 
 
 export const CalendarSearchScreen = ({ navigation }) => {
@@ -28,15 +31,15 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   const [selectedOption, setSelectedOption] = useState({
     date: [],
-    judge:[]
-  });
+    judge: []
+  })
 
 
- 
-  
+
+
   const refresh = (option) => {
 
-  
+
 
     // console.log('state changed', selectedDateOption)
     let dataArray = []
@@ -66,19 +69,19 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
       if (option === "date") {
         setSelectedOption({
-          judge:selectedOption.judge,
-          date:dataArray
+          judge: selectedOption.judge,
+          date: dataArray
         })
       }
       else if (option === "judge") {
         setSelectedOption({
-          date:selectedOption.date,
-          judge:dataJudge
+          date: selectedOption.date,
+          judge: dataJudge
         })
       }
       else {
-        setSelectedOption({date:dataArray,judge:dataJudge})
- 
+        setSelectedOption({ date: dataArray, judge: dataJudge })
+
       }
 
 
@@ -97,9 +100,15 @@ export const CalendarSearchScreen = ({ navigation }) => {
     </View>
   );
   const navigateForward = (option) => {
-    console.debug("forward",option,selectedOption.date)
-      setSelectedOption({ date:selectedOption.date,judge:option})
-    navigation.navigate('CalendarDetail');
+
+    setSelectedOption({ date: selectedOption.date, judge: option })
+
+
+
+    console.debug("forward...", option, selectedOption.date)
+    navigation.navigate('CalendarDetail',{date: selectedOption.date.text, judge:option.text})
+
+
 
   };
 
@@ -114,41 +123,38 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   return (
 
-
   
+
       <SafeAreaView style={{ flex: 1 }}>
 
         <ScrollView style={{ flex: 1 }}>
           <TopNavigation title='Daily Calendar' alignment='center' leftControl={BackAction()} />
-          <CalendarContext.Provider value={selectedOption}>
-          {console.debug("setSelectedOption:",selectedOption.date,selectedOption.judge)}
-       
-            <Select data={selectedOption.date}
-              selectedOption={selectedOption.date}
-              onSelect={(option1) => setSelectedOption({ judge:selectedOption.judge, date:option1})}
-              placeholder="Select Date.."
-              onFocus={() => { refresh("date") }}
 
-            />
+          {console.debug("setSelectedOption----:", selectedOption.date, selectedOption.judge)}
+      
+
+          <Select data={selectedOption.date}
+            selectedOption={selectedOption.date}
+            onSelect={(option1) => setSelectedOption({ judge: selectedOption.judge, date: option1 })}
+            placeholder="Select Date.."
+            onFocus={() => { refresh("date") }}
+
+          />
+
+          <Select data={selectedOption.judge}
+            selectedOption={selectedOption.judge}
+            onSelect={(option2) => navigateForward(option2)}
+            placeholder="Select judge"
+            onFocus={() => { refresh("judge") }}
+
+          />
 
 
-   
 
-
-       
-            <Select data={selectedOption.judge}
-              selectedOption={selectedOption.judge}
-              onSelect={(option2) => navigateForward(option2)}
-              placeholder="Select judge"
-              onFocus={() => { refresh("judge") }}
-
-            />
-
-     
-          </CalendarContext.Provider>
         </ScrollView>
       </SafeAreaView>
-   
+ 
+
   )
 }
 
