@@ -98,7 +98,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
   );
   const navigateForward = (option) => {
     console.debug("forward",option,selectedOption.date)
-     setSelectedOption({ date:selectedOption.date,judge:option})
+      setSelectedOption({ date:selectedOption.date,judge:option})
     navigation.navigate('CalendarDetail');
 
   };
@@ -114,14 +114,15 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   return (
 
-    <CalendarContext.Provider value={selectedOption}>
-    {console.debug("setSelectedOption:",selectedOption.date,selectedOption.judge)}
+
+  
       <SafeAreaView style={{ flex: 1 }}>
 
         <ScrollView style={{ flex: 1 }}>
           <TopNavigation title='Daily Calendar' alignment='center' leftControl={BackAction()} />
-
-          <Layout  >
+          <CalendarContext.Provider value={selectedOption}>
+          {console.debug("setSelectedOption:",selectedOption.date,selectedOption.judge)}
+       
             <Select data={selectedOption.date}
               selectedOption={selectedOption.date}
               onSelect={(option1) => setSelectedOption({ judge:selectedOption.judge, date:option1})}
@@ -131,10 +132,10 @@ export const CalendarSearchScreen = ({ navigation }) => {
             />
 
 
-          </Layout>
+   
 
 
-          <Layout  >
+       
             <Select data={selectedOption.judge}
               selectedOption={selectedOption.judge}
               onSelect={(option2) => navigateForward(option2)}
@@ -143,11 +144,11 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
             />
 
-          </Layout>
-
+     
+          </CalendarContext.Provider>
         </ScrollView>
       </SafeAreaView>
-    </CalendarContext.Provider>
+   
   )
 }
 

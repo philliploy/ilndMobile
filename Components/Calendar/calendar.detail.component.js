@@ -14,7 +14,7 @@ export const CalendarDetailScreen = ({ navigation }) => {
 
     const calendar = useContext(Context);
 
-    console.debug("detailed:",calendar.judge)
+    console.debug("detailed:",calendar.judge,calendar.date)
     const BackwardIcon = (style) => (
         <Icon {...style} name='arrow-back' />
     );
