@@ -2,11 +2,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import {
-  Icon,
+
 
   TopNavigation, TopNavigationAction
 } from '@ui-kitten/components';
-import { Container, Header, Content, List, ListItem, Text } from "native-base";
+import {   Icon,Container, Header, Content, List, ListItem, Text,Thumbnail,Item, Input  } from "native-base";
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
@@ -37,7 +37,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
 
 
   const BackwardIcon = (style) => (
-    <Icon {...style} name='arrow-back' />
+    <Icon name="arrow-back"  />
   );
   const navigateBack = () => {
     navigation.goBack()
@@ -69,16 +69,24 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
 
   return (<SafeAreaView style={{ flex: 1 }}>
     <TopNavigation style={{ height: "10%" }} title={ route.params.judge==="All"?"Daily Calendar on " + route.params.date.toString(): route.params.date.indexOf("/") === -1 ? "" : route.params.judge.substring(route.params.judge.length - 1, route.params.judge.length) === "s" ? route.params.judge + "'\nDaily Calendar on " : route.params.judge + "'s\nDaily Calendar on " + route.params.date.toString()+"\n"+listItemData.room } alignment='center' leftControl={BackAction()} />
- 
+    <Item>
+            <Icon active name='home' />
+            <Input placeholder='Search'/>
+          </Item>
     <Container>
-      <Header />
+       
       <Content>
         <List>
+      
+          <Header/> 
           {listItemData.list.map(list => {
              
             return (
               <Content>
+
+          
                 <ListItem style={{backgroundColor:"#2853B0"}} itemDivider>
+                <Thumbnail square size={1} source={require('./images/gavel.png')} />
                      <Text style={{color:"white"}}>{list.Time != undefined ? moment(list.Time, "HH:mm a").format("hh:mm a") : ""}</Text>
 
                 </ListItem>
