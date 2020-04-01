@@ -30,7 +30,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   const [selectedOption, setSelectedOption] = useState({
     date: [],
-    judge: []
+    judge: [] 
   })
 
 
@@ -43,6 +43,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
     // console.log('state changed', selectedDateOption)
     let dataArray = []
     let dataJudge = []
+ 
     API.getCalendar().then(_response => {
       //
       let prevDate = ""
@@ -50,17 +51,19 @@ export const CalendarSearchScreen = ({ navigation }) => {
       let prevLastname = ""
       for (let i = 0; i < _response.data.length; i++) {
         if (moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY") != prevDate)
-          dataArray.push({
+        
+        dataArray.push({
             text: moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
           })
         prevDate = moment(_response.data[i].Date, "YYYY-MM-DD").format("MM/DD/YYYY")
-
+  
       }
-
+      dataJudge.push({text:"All"})
       _response.data.sort((a, b) => { return a.Lastname.localeCompare(b.Lastname) })
       for (let i = 0; i < _response.data.length; i++) {
 
         if (_response.data[i].Firstname != prevFirstname && _response.data[i].Lastname != prevLastname) {
+          
           dataJudge.push({
             text: 'Judge ' + _response.data[i].Firstname + ' ' + _response.data[i].Lastname
 
@@ -76,14 +79,14 @@ export const CalendarSearchScreen = ({ navigation }) => {
         //dataArray.sort((a,b)=>{ return  a.Date.localeCompare(b.Date)  })
         setSelectedOption({
           judge: selectedOption.judge,
-          date: dataArray
+          date: dataArray 
         })
       }
       else if (option === "judge") {
 
         setSelectedOption({
           date: selectedOption.date,
-          judge: dataJudge
+          judge: dataJudge 
         })
       }
       else {
@@ -109,7 +112,7 @@ export const CalendarSearchScreen = ({ navigation }) => {
   );
   const navigateForward = (option) => {
 
-    setSelectedOption({ date: selectedOption.date, judge: option })
+    setSelectedOption({ date: selectedOption.date, judge: option  })
 
 
 
