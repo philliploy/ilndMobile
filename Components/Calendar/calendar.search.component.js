@@ -30,7 +30,8 @@ export const CalendarSearchScreen = ({ navigation }) => {
 
   const [selectedOption, setSelectedOption] = useState({
     date: [],
-    judge: [] 
+    judge: [],
+    allJudges:[] 
   })
 
 
@@ -79,19 +80,22 @@ export const CalendarSearchScreen = ({ navigation }) => {
         //dataArray.sort((a,b)=>{ return  a.Date.localeCompare(b.Date)  })
         setSelectedOption({
           judge: selectedOption.judge,
-          date: dataArray 
+          date: dataArray,
+          allJudges: _response.data
         })
       }
       else if (option === "judge") {
 
         setSelectedOption({
           date: selectedOption.date,
-          judge: dataJudge 
+          judge: dataJudge ,
+          allJudges: _response.data
         })
       }
       else {
 
-        setSelectedOption({ date: dataArray, judge: dataJudge })
+        setSelectedOption({ date: dataArray, judge: dataJudge,
+          allJudges: _response.data })
 
       }
 
@@ -112,12 +116,12 @@ export const CalendarSearchScreen = ({ navigation }) => {
   );
   const navigateForward = (option) => {
 
-    setSelectedOption({ date: selectedOption.date, judge: option  })
+    setSelectedOption({ date: selectedOption.date, judge: option,allJudges:selectedOption.allJudges })
 
 
 
     //console.debug("forward...", option, selectedOption.date)
-    navigation.navigate('CalendarDetail', { date: selectedOption.date.text, judge: option.text })
+    navigation.navigate('CalendarDetail', { date: selectedOption.date.text, judge: option.text,allJudges:selectedOption.allJudges })
 
 
 
