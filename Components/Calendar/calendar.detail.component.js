@@ -3,10 +3,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import {
 
-
+  Icon,
   TopNavigation, TopNavigationAction
 } from '@ui-kitten/components';
-import { Icon, Container, Header, Content, List, ListItem, Text, Thumbnail, Item, Input } from "native-base";
+import {  Container, Header, Content, List, ListItem, Text, Thumbnail, Item, Input } from "native-base";
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
@@ -36,7 +36,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
   // );
 
 
-  const BackwardIcon = (style) => (
+  const BackwardIcon = () => (
     <Icon name="arrow-back" />
   );
   const navigateBack = () => {
@@ -85,10 +85,10 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
         <List>
 
           <Header />
-          {listItemData.list.map(list => {
+          {listItemData.list.map((list,index) => {
 
             return (
-              <Content>
+              <Content key={index}>
                 <ListItem style={{ backgroundColor: "#2853B0" }}  itemDivider>
                   <Text style={{ color: "white",fontSize:20 }}>{list.Lastname != undefined ?"Judge "+ list.Lastname.trim() : ""}</Text>
                 </ListItem>

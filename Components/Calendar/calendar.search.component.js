@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
-import { Spinner, Select, Avatar, Button,  Divider, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
-import {  Icon } from "native-base";
+import { Icon,Spinner, Select,  TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+ 
 import { ScrollView } from 'react-native-gesture-handler';
 import API from '../../utils/api'
 import moment from 'moment'
@@ -9,7 +9,7 @@ import moment from 'moment'
  
 
 
-const BackwardIcon = (style) => (
+const BackwardIcon = () => (
   <Icon  name='arrow-back' />
 );
 

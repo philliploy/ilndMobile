@@ -1,17 +1,18 @@
 import React from 'react';
 import { Alert, SafeAreaView, StyleSheet, Image, View, Dimensions, TouchableOpacity, TouchableHighlight } from 'react-native';
-import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Divider, Icon , Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import FitImage from 'react-native-fit-image';
 import ResponsiveImage from "react-native-responsive-image";
-
+ 
+  
 import { isAndroid } from 'react-native-device-detection';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { CalendarSearch } from '../Calendar/calendar.search.component'
 
 const ForwardIcon = (style) => (
-  <Icon {...style} name='arrow-forward' />
+  <Icon name='arrow-forward' />
 );
 
 export const DetailsScreen = ({ navigation }) => {
