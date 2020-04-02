@@ -105,7 +105,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
                   (
                     <>
                       <ListItem style={{ backgroundColor: "#2853B0" }} itemDivider>
-                        <Text style={{ color: "white", fontSize: 20 }}>{list.Lastname != undefined ? "Judge " + list.Lastname.trim() : ""}</Text>
+                        <Text style={{ color: "white", fontSize: 20 }}>{ "Judge " + list.Lastname.trim() +" - "+list.CourtroomNo }</Text>
                       </ListItem>
 
                       <ListItem style={{ backgroundColor: "#BAC0CB" }} itemDivider>
