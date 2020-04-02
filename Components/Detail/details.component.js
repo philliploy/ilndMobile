@@ -11,6 +11,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 
 import { CalendarSearch } from '../Calendar/calendar.search.component'
 import { ILNDWeb } from '../ILNDWeb/ILNDWeb.component'
+import {News} from '../News/news.component'
 
 const ForwardIcon = (style) => (
   <Icon name='arrow-forward' />
@@ -26,6 +27,9 @@ export const DetailsScreen = ({ navigation }) => {
       break;
       case "ILNDWeb":
       navigation.navigate('ILNDWeb');
+      break;
+      case "News":
+      navigation.navigate('News');
       break;
     }
 
@@ -124,10 +128,6 @@ export const DetailsScreen = ({ navigation }) => {
               }
               <Text style={{ margin: "7.6%" }}>News</Text>
 
-
-
-
-
             </View>
           </View>
 
@@ -201,7 +201,7 @@ export const DetailsScreen = ({ navigation }) => {
                 </View>
 
               </TouchableOpacity>
-              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => navigateForward("News")}>
                 <View   >
                   <ResponsiveImage
                     source={require("./images/iso_icons8-us-news-96.png")}
