@@ -26,14 +26,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
     <Icon {...style} name='person' />
   );
 
-  // const renderItem = ({ item, index }) => (
-  //   <ListItem
-  //     title={`${item.CaseNo} ${index + 1}`}
-  //     description={`${item.CaseTitle} ${index + 1}`}
-  //     icon={renderItemIcon}
-
-  //   />
-  // );
+ 
 
 
   const BackwardIcon = () => (
@@ -55,10 +48,12 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
       let newData;
       console.debug(route.params.judge)
       if (route.params.judge === "All") {
-        _response.data.sort((a, b) => { return a.Lastname.localeCompare(b.Lastname) })
-        newData = _response.data.filter(calendar => calendar)
+        _response.data.sort((a, b) => { return a.Lastname.localeCompare(b.Lastname) || moment(a.Time,"hh:mm a") -  moment(b.Time,"hh:mm a") })
+     
+        newData = _response.data.filter(calendar => moment(route.params.date, "MM/DD/YYYY").format("YYYY-MM-DD") === calendar.Date)
       }
       else {
+        _response.data.sort((a, b) => { moment(a.Time,"hh:mm a") -  moment(b.Time,"hh:mm a") })
         newData = _response.data.filter(calendar => {
           //   console.debug(moment(route.params.date,"MM/DD/YYYY").format("YYYY-MM-DD"), calendar.Date)
           return route.params.judge.indexOf(calendar.Lastname) > -1 && moment(route.params.date, "MM/DD/YYYY").format("YYYY-MM-DD") === calendar.Date
