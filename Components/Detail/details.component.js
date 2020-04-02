@@ -10,6 +10,7 @@ import { isAndroid } from 'react-native-device-detection';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { CalendarSearch } from '../Calendar/calendar.search.component'
+import { ILNDWeb } from '../ILNDWeb/ILNDWeb.component'
 
 const ForwardIcon = (style) => (
   <Icon name='arrow-forward' />
@@ -17,9 +18,17 @@ const ForwardIcon = (style) => (
 
 export const DetailsScreen = ({ navigation }) => {
 
-  const navigateForward = () => {
+  const navigateForward = (page) => {
 
-    navigation.navigate('CalendarSearch');
+    switch(page){
+      case "Calendar":
+      navigation.navigate('CalendarSearch');
+      break;
+      case "ILNDWeb":
+      navigation.navigate('ILNDWeb');
+      break;
+    }
+
 
   };
 
@@ -167,7 +176,7 @@ export const DetailsScreen = ({ navigation }) => {
                 width: "100%"
               }}
             >
-              <TouchableOpacity style={{ margin: "10%" }} onPress={() => navigateForward()} >
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => navigateForward("Calendar")} >
 
                 <View    >
                   <ResponsiveImage
@@ -181,7 +190,7 @@ export const DetailsScreen = ({ navigation }) => {
 
               </TouchableOpacity>
 
-              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => navigateForward("ILNDWeb")}>
                 <View   >
                   <ResponsiveImage
                     source={require("./images/iso_icons8-home-96.png")}

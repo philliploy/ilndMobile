@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import {WebView} from 'react-native-webview'
+import { SafeAreaView, StyleSheet,TouchableOpacity, View } from 'react-native';
+import { WebView } from 'react-native-webview'
 import {
 
   Icon,
@@ -27,7 +27,17 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
   const renderItemIcon = (style) => (
     <Icon {...style} name='person' />
   );
+  const navigateForward = (page,CaseNo) => {
 
+    switch(page){
+      case "CalendarWebView":
+      navigation.navigate('CalendarWebview',{CaseNo:CaseNo});
+      break;
+     
+    }
+
+
+  };
 
 
 
@@ -87,10 +97,10 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
 
             return (
               <Content key={index}>
-                {time != moment(list.Time, "HH:mm a").format("hh:mm a")    ? <Header /> : <Text></Text>}
+                {time != moment(list.Time, "HH:mm a").format("hh:mm a") ? <Header /> : <Text></Text>}
 
 
-                {time != moment(list.Time, "HH:mm a").format("hh:mm a")    ?
+                {time != moment(list.Time, "HH:mm a").format("hh:mm a") || index === 0 ?
 
                   (
                     <>
@@ -100,7 +110,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
 
                       <ListItem style={{ backgroundColor: "#BAC0CB" }} itemDivider>
                         <Thumbnail square size={1} source={require('./images/gavel.png')} />
-                        <Text style={{ fontSize: 20 }} >{list.Time != undefined ? time  = moment(list.Time, "HH:mm a").format("hh:mm a") : ""}</Text>
+                        <Text style={{ fontSize: 20 }} >{list.Time != undefined ? time = moment(list.Time, "HH:mm a").format("hh:mm a") : ""}</Text>
 
                       </ListItem>
 
@@ -112,21 +122,26 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
 
 
                 <ListItem >
-                {/* <WebView
+                  {/* <WebView
         source={{uri: 'https://github.com/facebook/react-native'}}
         style={{marginTop: 20}}
       /> */}
-                  <Text style={{ fontSize: 20, color: "blue" }}> 
-                  {/* https://ecf.ilnd.uscourts.gov/cgi-bin/DktRpt.pl? */}
-                  {list.CaseNo != undefined ? list.CaseNo.trim() : ""}
 
-                  </Text>
+                  <TouchableOpacity   onPress={() => navigateForward("CalendarWebView",list.CaseNo)}>
 
+                 
+                      <Text style={{ fontSize: 20, color: "blue" }}>
+                        {/* https://ecf.ilnd.uscourts.gov/cgi-bin/DktRpt.pl? */}
+                        {list.CaseNo != undefined ? list.CaseNo.trim() : ""}
+
+                      </Text>
+              
+                  </TouchableOpacity>
                 </ListItem>
                 <ListItem>
-                  <Text style={  { fontSize: 20, textDecorationLine:true }}>{list.CaseTitle != undefined ? list.CaseTitle.trim() : ""} </Text>
+                  <Text style={{ fontSize: 20, textDecorationLine: true }}>{list.CaseTitle != undefined ? list.CaseTitle.trim() : ""} </Text>
                 </ListItem>
-               
+
 
               </Content>
             )
