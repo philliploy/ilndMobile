@@ -62,17 +62,16 @@ export const NewsScreen = ({ navigation }) => {
               newsState.news.map(news => {
                 return (
                   <Content>
+                     
                     <ListItem avatar>
                       <Left>
                         <Thumbnail source={{ uri: 'https://www.ilnd.uscourts.gov/'+news.image }} />
                       </Left>
                       <Body>
-                        <Text>{news.headline}</Text>
+                        <Text><Text style={{fontWeight:"700"}}>{news.postedDate+"\n"}</Text>{news.headline.replace("<br />","")}</Text>
                      
                       </Body>
-                      <Right>
-                        <Text note>{news.postedDate}</Text>
-                      </Right>
+                      
                     </ListItem>
                   </Content>
                 )
