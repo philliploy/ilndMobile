@@ -130,7 +130,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
                   <TouchableOpacity   onPress={() => navigateForward("CalendarWebView",list.CaseNo)}>
 
                  
-                      <Text style={{ fontSize: 20, color: "blue" }}>
+                      <Text style={{ fontSize: 20, color: "blue",textDecorationLine: 'underline' }}>
                         {/* https://ecf.ilnd.uscourts.gov/cgi-bin/DktRpt.pl? */}
                         {list.CaseNo != undefined ? list.CaseNo.trim() : ""}
 
@@ -139,7 +139,7 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
                   </TouchableOpacity>
                 </ListItem>
                 <ListItem>
-                  <Text style={{ fontSize: 20, textDecorationLine: true }}>{list.CaseTitle != undefined ? list.CaseTitle.trim() : ""} </Text>
+                  <Text style={{ fontSize: 20,  fontWeight:"700" }}>{list.CaseTitle != undefined ? list.CaseTitle.trim() : ""} </Text>
                 </ListItem>
 
 
