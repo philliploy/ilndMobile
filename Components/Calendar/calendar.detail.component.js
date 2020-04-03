@@ -105,12 +105,12 @@ export const CalendarDetailScreen = ({ route, navigation }) => {
                   (
                     <>
                       <ListItem style={{ backgroundColor: "#2853B0" }} itemDivider>
-                        <Text style={{ color: "white", fontSize: 20 }}>{ "Judge " + list.Lastname.trim() +" - "+list.CourtroomNo }</Text>
+                        <Text style={{ color: "white", fontSize: 20,fontWeight:"700"  }}>{ "Judge " + list.Lastname.trim() +" - "+list.CourtroomNo }</Text>
                       </ListItem>
 
                       <ListItem style={{ backgroundColor: "#BAC0CB" }} itemDivider>
                         <Thumbnail square size={1} source={require('./images/gavel.png')} />
-                        <Text style={{ fontSize: 20 }} >{list.Time != undefined ? time = moment(list.Time, "HH:mm a").format("hh:mm a") : ""}</Text>
+                        <Text style={{ fontSize: 20,fontWeight:"700"  }} >{list.Time != undefined ? time = moment(list.Time, "HH:mm a").format("hh:mm a") : ""}</Text>
 
                       </ListItem>
 
