@@ -8,7 +8,7 @@ import {CalendarDetailScreen}  from '../Calendar/calendar.detail.component'
 import {CalendarWebviewScreen}  from '../Calendar/calendar.webview.component'
 import {ILNDWebScreen}  from '../ILNDWeb/ILNDWeb.component'
 import {NewsScreen}  from '../News/news.component'
-
+import {NewsWebviewScreen}  from '../News/news.webview.component'
 const Stack = createStackNavigator();
 
 const DetailsNavigator = () => (
@@ -21,6 +21,7 @@ const DetailsNavigator = () => (
      <Stack.Screen name='CalendarWebview' component={CalendarWebviewScreen}/>
      <Stack.Screen name='ILNDWeb' component={ILNDWebScreen}/>
      <Stack.Screen name='News' component={NewsScreen}/>
+     <Stack.Screen name='NewsWebview' component={NewsWebviewScreen}/>
   </Stack.Navigator>
  
 );

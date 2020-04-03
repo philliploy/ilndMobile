@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect,ActivityIndicator } from "react";
 import {
   StyleSheet,
   View,
@@ -14,8 +14,7 @@ import { WebView } from 'react-native-webview'
 import HTML from 'react-native-render-html'
 import API from '../../utils/api'
 import moment from 'moment'
-
-
+ 
 const BackwardIcon = () => (
   <Icon name='arrow-back' />
 );
@@ -39,9 +38,13 @@ export const NewsScreen = ({ navigation }) => {
   }, []);
 
   const navigateBack = () => {
-    navigation.goBack()
+    navigation.navigate("Details");
 
   }
+
+  const navigateForward = (page,pdf) => {
+    navigation.navigate(page,{pdf:"https://www.ilnd.uscourts.gov/"+pdf});
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackwardIcon} onPress={navigateBack} />
   );
@@ -51,27 +54,34 @@ export const NewsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
-      <TopNavigation title='Back to Menu Icons' leftControl={BackAction()} />
+      <TopNavigation title={'\t\t\t\tILND News'} leftControl={BackAction()} />
 
       <Container>
-        <Header />
+
 
         <Content>
           <List>
             {
-              newsState.news.map(news => {
+              newsState.news.map((news,index) => {
                 return (
                   <Content>
+
+                    <ListItem key={index} avatar>
+                       <TouchableOpacity   onPress={() => navigateForward("NewsWebview",news.url)}>
+              
+                       <Left>
+                        <Thumbnail source={{ uri: 'https://www.ilnd.uscourts.gov/' + news.image }}    />
+                        </Left>
                      
-                    <ListItem avatar>
-                      <Left>
-                        <Thumbnail source={{ uri: 'https://www.ilnd.uscourts.gov/'+news.image }} />
-                      </Left>
-                      <Body>
-                        <HTML html={news.postedDate+"\n"+news.headline} />  
-                     
+                       
+                         <Body>
+
+                        <HTML html={"<b>"+news.postedDate + "</b><br>" + news.headline.replace("<img", "")} />
+
                       </Body>
-                      
+                 
+                       
+                      </TouchableOpacity>
                     </ListItem>
                   </Content>
                 )
