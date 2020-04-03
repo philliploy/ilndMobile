@@ -11,7 +11,7 @@ import {
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base'
 import { Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { WebView } from 'react-native-webview'
-
+import HTML from 'react-native-render-html'
 import API from '../../utils/api'
 import moment from 'moment'
 
@@ -68,7 +68,7 @@ export const NewsScreen = ({ navigation }) => {
                         <Thumbnail source={{ uri: 'https://www.ilnd.uscourts.gov/'+news.image }} />
                       </Left>
                       <Body>
-                        <Text><Text style={{fontWeight:"700"}}>{news.postedDate+"\n"}</Text>{news.headline.replace("<br />","")}</Text>
+                        <HTML html={news.postedDate+"\n"+news.headline} />  
                      
                       </Body>
                       
