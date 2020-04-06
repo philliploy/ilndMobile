@@ -1,17 +1,18 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
     StyleSheet,
     View,
     Text,
     ScrollView,
     TouchableOpacity,
-   Button,
+    Button,
     SafeAreaView,
 } from "react-native";
 import { Icon, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { WebView } from 'react-native-webview'
 import getDirections from 'react-native-google-maps-directions'
- 
+
+import Geolocation from '@react-native-community/geolocation';
 
 const BackwardIcon = () => (
     <Icon name='arrow-back' />
@@ -19,61 +20,101 @@ const BackwardIcon = () => (
 
 
 export const DirectionScreen = ({ navigation }) => {
+
+    const [ locationState, setLocationState ] = useState({
+        location: {}
+    })
+
+    useEffect(()=>{
+        findCoordinates()
+    },[])
     const BackAction = () => (
         <TopNavigationAction icon={BackwardIcon} onPress={navigateBack} />
     );
-  
+
     const navigateBack = () => {
         navigation.navigate("Details");
-    
-      }
-    
-    const  handleGetDirections = () => {
+
+    }
+  
+    const findCoordinates = () => {
+
+        Geolocation.getCurrentPosition(info => {
+ 
+        
+                    console.debug(info)
+                   setLocationState({ location: info });
+                   console.debug("location:",locationState.location)
+        });
+
+
+
+       
+    };
+
+    const handleGetDirections = () => {
+       var lat=  locationState.location.coords !=undefined? locationState.location.coords.latitude :0  
+       var long=  locationState.location.coords !=undefined? locationState.location.coords.longitude :0  
+
+   
         const data = {
-           source: {
-            latitude: -33.8356372,
-            longitude: 18.6947617
-          },
-          destination: {
-            latitude: 41.992342,
-            longitude: -87.730934
-          },
-          params: [
-            {
-              key: "travelmode",
-              value: "driving"        // may be "walking", "bicycling" or "transit" as well
+            source: {
+                latitude:lat ,
+                longitude: long
             },
-            {
-              key: "dir_action",
-              value: "navigate"       // this instantly initializes navigation using the given travel mode
-            }
-          ],
-          waypoints: [
-            {
-              latitude: -33.8600025,
-              longitude: 18.697452
+            destination: {
+                latitude: 41.8787033,
+                longitude: -87.6289318
             },
-            {
-              latitude: -33.8600026,
-              longitude: 18.697453
-            },
-               {
-              latitude: -33.8600036,
-              longitude: 18.697493
-            }
-          ]
+            params: [
+                {
+                    key: "travelmode",
+                    value: "driving"        // may be "walking", "bicycling" or "transit" as well
+                },
+                {
+                    key: "dir_action",
+                    value: "navigate"       // this instantly initializes navigation using the given travel mode
+                }
+            ],
+            waypoints: [
+                {
+                    latitude: 41.8787033,
+                    longitude: -87.6289318
+                }
+
+            ]
         }
-     
+
         getDirections(data)
     }
     return (
         <SafeAreaView style={{ flex: 1 }}>
+ 
+            
 
-         <TopNavigation title={'\t\t\t\tDirections'} leftControl={BackAction()} />
-   
-         <View  >
-        <Button onPress={handleGetDirections} title="Get Directions" />
-      </View>
+            <TopNavigation title='Back to Menu Icons'   leftControl={BackAction()} />
+
+             <WebView source={{ uri: `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=41.8787033%2C-87.6289318&origin=${locationState.location.coords !=undefined? locationState.location.coords.latitude :"0" }%2C${ locationState.location.coords !=undefined?    locationState.location.coords.longitude :"0" }&waypoints=41.8787033,-87.6289318` }} />
+            
         </SafeAreaView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F5FCFF"
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: "center",
+        margin: 10
+    },
+    instructions: {
+        textAlign: "center",
+        color: "#333333",
+        marginBottom: 5
+    }
+});

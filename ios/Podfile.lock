@@ -182,6 +182,8 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
+  - react-native-geolocation (2.0.2):
+    - React
   - react-native-maps (0.27.1):
     - React
   - react-native-orientation (3.1.3):
@@ -254,6 +256,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-orientation (from `../node_modules/react-native-orientation`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
@@ -309,6 +312,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-geolocation:
+    :path: "../node_modules/@react-native-community/geolocation"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
   react-native-orientation:
@@ -366,6 +371,7 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
+  react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-orientation: d4a97266b06ec8d45d74e626656a730ebbebbb6f
   react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
