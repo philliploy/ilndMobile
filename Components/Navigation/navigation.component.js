@@ -10,6 +10,7 @@ import {ILNDWebScreen}  from '../ILNDWeb/ILNDWeb.component'
 import {NewsScreen}  from '../News/news.component'
 import {NewsWebviewScreen}  from '../News/news.webview.component'
 import {DirectionScreen} from '../Direction/direction.component'
+import {DirectionWebviewScreen} from '../Direction/direction.webview.component'
 const Stack = createStackNavigator();
 
 const DetailsNavigator = () => (
@@ -24,6 +25,7 @@ const DetailsNavigator = () => (
      <Stack.Screen name='News' component={NewsScreen}/>
      <Stack.Screen name='NewsWebview' component={NewsWebviewScreen}/>
      <Stack.Screen name='Direction' component={DirectionScreen}/>
+     <Stack.Screen name='DirectionWebview' component={DirectionWebviewScreen}/>
   </Stack.Navigator>
  
 );
