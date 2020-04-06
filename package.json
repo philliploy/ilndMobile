@@ -26,6 +26,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-fit-image": "^1.5.5",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-google-maps-directions": "^2.1.1",
     "react-native-image-button-text": "^1.0.7",
     "react-native-maps": "^0.27.1",
     "react-native-maps-directions": "^1.7.6",
