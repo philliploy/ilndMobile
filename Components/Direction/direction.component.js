@@ -94,8 +94,8 @@ export const DirectionScreen = ({ navigation }) => {
     //     getDirections(data)
     // }
 
-    const goToDirection = (destination) => {
-        setLocationState({ location: locationState.location, visible:true});
+    const goToDirection = (destination,value) => {
+        setLocationState({ location: locationState.location, visible:value});
         navigation.navigate("DirectionWebview",{
             url:  `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=${destination}&origin=${locationState.location.coords != undefined ? locationState.location.coords.latitude : "0"}%2C${locationState.location.coords != undefined ? locationState.location.coords.longitude : "0"}&waypoints=${destination}` 
         });
@@ -115,7 +115,7 @@ export const DirectionScreen = ({ navigation }) => {
 
             <TopNavigation title='Back to Menu Icons' leftControl={BackAction()} />
 
-   {console.debug(locationState.visible)}
+   {console.debug("see ",locationState.visible)}
             <ConfirmDialog
                 title="Confirm Dialog"
                 message="Are you going to the courthouse in Chicago?"
@@ -123,11 +123,11 @@ export const DirectionScreen = ({ navigation }) => {
                 
                 positiveButton={{
                     title: "YES",
-                    onPress: () => goToDirection("41.8787033%2C-87.6289318")
+                    onPress: () => goToDirection("41.8787033%2C-87.6289318",false)
                 }}
                 negativeButton={{
                     title: "NO",
-                    onPress: () => goToDirection("42.0335423%2C-88.9792029")
+                    onPress: () => goToDirection("42.0335423%2C-88.9792029",false)
                 }}
             />
 
