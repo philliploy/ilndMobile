@@ -54,7 +54,7 @@ export const NewsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
-      <TopNavigation title={'\t\t\t\tILND News'} leftControl={BackAction()} />
+      <TopNavigation title={'ILND News'} alignment='center' leftControl={BackAction()} />
 
       <Container>
 

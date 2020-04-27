@@ -14,6 +14,8 @@ import { ILNDWeb } from '../ILNDWeb/ILNDWeb.component'
 import {News} from '../News/news.component'
 import {Direction} from '../Direction/direction.component'
 
+import {Question} from '../Question/question.component'
+
 const ForwardIcon = (style) => (
   <Icon name='arrow-forward' />
 );
@@ -34,6 +36,9 @@ export const DetailsScreen = ({ navigation }) => {
       break;
       case "Direction":
       navigation.navigate('Direction');
+      break;
+      case "Question":
+      navigation.navigate('Question');
       break;
     }
 
@@ -256,7 +261,7 @@ export const DetailsScreen = ({ navigation }) => {
 
               </TouchableOpacity>
 
-              <TouchableOpacity style={{ margin: "10%" }} onPress={() => alert('image clicked')} >
+              <TouchableOpacity style={{ margin: "10%" }} onPress={() => navigateForward("Question")}  >
                 <View   >
                   <ResponsiveImage
                     source={require("./images/iso_icons8-ask-question-96.png")}
